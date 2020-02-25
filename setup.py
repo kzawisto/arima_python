@@ -8,5 +8,5 @@ setup(
    author='Krystian Zawistowski',
    author_email='krystian.zawistowski@zoho.com',
    packages=['arima'],  #same as name
-   install_requires=['scipy>=1.0.0', 'numpy>=1.13.1'], #external packages as dependencies
+   install_requires=['scipy>=1.0.0', 'numpy>=1.13.1','numba>=0.41.0'], #external packages as dependencies
 )
