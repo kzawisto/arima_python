@@ -1,6 +1,26 @@
 
 # ARIMA model toolbox for Python
 
+Fitting ARMA/ARIMA models using EM algorithm. Basic fit procedure over 1000 times faster than module in statsmodels.tsa - can be used when fitting many models to large datasets:
+```
+
+from statsmodels.tsa.arima_process import ArmaProcess
+from statsmodels.tsa.arima_model import ARMA
+arma=ArmaProcess([1,0.3,0.2,-0.2],[1,0.2,0.1])
+sample=arma.generate_sample(10000)
+
+# %%timeit
+fit1=ARMA(sample,(3,2)).fit()
+# 2.22 s ± 89 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+
+import arima
+%%timeit
+ar, ma = arima.fit_arma(sample,3,2)
+# 1.64 ms ± 42 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
+```
+(Core i5-5300U on Ubuntu 18.04, Python 3.7, numpy w/ Intel MKL bindings). 
+See test/ for tests and benchmarks.
+
 ## Setup 
 Python 3.5 or newer needed
 ```shell script
